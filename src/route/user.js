@@ -24,6 +24,7 @@ const route = Router();
  * @param {number} ageend.query -  age range end
  * @param {string} sortby.query -  sort by createdat or updatedat
  * @return {array<User>} 200 - success response - application/json
+ * @return {string} 500 - internal server error
  * @example response - 200 - success response example
  * [
  *   {
@@ -64,6 +65,8 @@ route.get("/", async (req, res) => {
  * @tags users
  * @param {string} id.path.required - user id
  * @return {User} 200 - success response - application/json
+ * @return {string} 404 - user not found response
+ * @return {string} 500 - internal server error
  * @example response - 200 - success response example
  * [
  *   {

@@ -20,6 +20,7 @@ const route = Router();
  * @param {string} page.query - page number
  * @param {string} limit.query - page limit
  * @return {array<Book>} 200 - success response - application/json
+ * @return {string} 500 - internal server error
  * @example response - 200 - success response example
  * [
  *   {
@@ -66,6 +67,7 @@ route.get("/", async (req, res) => {
  * @tags books
  * @param {string} id.path.required - book id
  * @return {BookStatistics} 200 - success response - application/json
+ * @return {string} 500 - internal server error
  * @example response - 200 - success response example
  *   {
  *     "uniqueUsers": 2,

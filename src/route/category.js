@@ -10,6 +10,7 @@ const route = Router();
  * @summary Endpoint to get category tree
  * @tags categories
  * @return {object} 200 - success response - application/json
+ * @return {string} 500 - internal server error
  */
 
 route.get("/", async (req, res) => {
