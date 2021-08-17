@@ -96,5 +96,4 @@ route.get("/:id/statistics", async (req, res) => {
   res.send(bookStatistics);
 });
 
-
 export default route;
