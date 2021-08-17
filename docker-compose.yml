@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  book-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    volumes:
+     - ./:/home/node/app/
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_HOST=${DB_HOST}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - PORT=${PORT}
+    command: npm run dev
+
+  
