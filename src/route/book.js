@@ -43,5 +43,56 @@ route.get("/", async (req, res) => {
 });
 
 
+/**
+ * ClientCountrySummary
+ * @typedef {object} ClientCountrySummary
+ * @property {number} country - country
+ * @property {number} count - number of unique clients that have read the book from the country
+
+ */
+
+/**
+ * Book Statistics
+ * @typedef {object} BookStatistics
+ * @property {number} uniqueUsers - Unique users that have read the book
+ * @property {number} uniqueClients - Unique clients that have read the book
+ * @property {array<ClientCountrySummary>} clientCountrySummary - Book Author
+
+ */
+
+/**
+ * GET /api/books/{id}/statistics
+ * @summary Endpoint to get paginated list of books
+ * @tags books
+ * @param {string} id.path.required - book id
+ * @return {BookStatistics} 200 - success response - application/json
+ * @example response - 200 - success response example
+ *   {
+ *     "uniqueUsers": 2,
+ *     "uniqueClients": 5,
+ *     "clientCountrySummary": [{
+ *        "country": "GH",
+ *        "count": 5
+ *       }]
+ *   }
+ */
+
+route.get("/:id/statistics", async (req, res) => {
+
+  const bookId = req.params.id;
+  winston.info(`Getting book statistic data for book with id - ${bookId}`);
+  let bookStatistics = {};
+
+    
+  bookStatistics.uniqueClients = await BookRepository
+        .getUniqueClients(bookId);
+    
+  bookStatistics.uniqueUsers = await BookRepository.getUniqueUsers(bookId);
+    
+  bookStatistics.clientCountrySummary = await BookRepository
+                                          .getClientCountrySummary(bookId);
+  res.send(bookStatistics);
+});
+
 
 export default route;
