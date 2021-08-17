@@ -1,5 +1,5 @@
 import books from "../route/book";
-import category from "../routes/category";
+import category from "../route/category";
 import express from "express";
 
 const routes = (app) => {
