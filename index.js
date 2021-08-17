@@ -1,9 +1,11 @@
 import  "express-async-errors"; //module to handle unhandled async errors
 import express from "express";
 import winston from "winston";
+import swaggerDocs from "./src/startup/documentation";
+import routes from "./src/startup/routes";
+import logger from "./src/startup/logger";
 import dotenv from "dotenv";
 dotenv.config();
-
 
 const app = express();
 
@@ -11,6 +13,11 @@ const app = express();
 app.get("/", (req, res) => {
     res.send("Book Api running successfully!!!")
 })
+
+logger();
+swaggerDocs(app);
+routes(app);
+
 
 const PORT = process.env.PORT || 3000;
 
