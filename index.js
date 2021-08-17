@@ -11,7 +11,8 @@ const app = express();
 
 //test route to check if application is runing
 app.get("/", (req, res) => {
-    res.send("Book Api running successfully!!!")
+    winston.info("Reader Api running successfully");
+    res.send("Reader Api running successfully!!!");
 })
 
 logger();
