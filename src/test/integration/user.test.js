@@ -43,4 +43,26 @@ describe("api/users", () => {
       expect(Array.isArray(res.body)).toBe(true);
     });
   });
+    
+    describe("GET /users:id/", () => {
+      it("should return user when a valid is provided", async () => {
+        const userId = "e30442f9-ac00-4f99-ad8f-cc495a71b16b";
+        const res = await request(server).get(`/api/users/${userId}`);
+
+        expect(res.status).toBe(200);
+        expect(res.body[0]).toHaveProperty("id");
+        expect(res.body[0]).toHaveProperty("gender");
+        expect(res.body[0]).toHaveProperty("age");
+        expect(res.body[0]).toHaveProperty("createdat");
+        expect(res.body[0]).toHaveProperty("updatedat");
+      });
+
+      it("should return 404 when user with id is not found", async () => {
+        const userId = "e30442f9-ac00-4f99-ad8f-cc495a71b16";
+        const res = await request(server).get(`/api/users/${userId}`);
+
+        expect(res.status).toBe(404);
+      });
+    });
+    
 });
