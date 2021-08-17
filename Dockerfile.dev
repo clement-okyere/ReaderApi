@@ -1,0 +1,9 @@
+FROM node:16-alpine3.11
+
+LABEL "author"="Clement Okyere"
+
+WORKDIR /home/node/app
+
+COPY package*.json ./
+
+
