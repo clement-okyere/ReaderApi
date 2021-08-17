@@ -26,3 +26,30 @@ export const resolveGender = (gender) => {
 
   return dbGender;
 };
+
+/**
+ * 
+ * @param { main array } arr 
+ * @param {parent id (numeric)} parent 
+ * @returns 
+ */
+//recursively generate nested subcategories from category tree
+export const getNestedChildren = (arr, parent) => {
+  var out = [];
+  for (var i in arr) {
+    if (arr[i].parent_id == parent) {
+      var children = getNestedChildren(arr, arr[i].id);
+
+      if (children.length) {
+        arr[i].subCategories = children;
+      }
+      out.push(arr[i]);
+    }
+  }
+  return out;
+}
+
+
+
+
+
