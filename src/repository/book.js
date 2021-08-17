@@ -35,6 +35,18 @@ class BookRepository {
     let result = await cquery(bookDbPool, queryString, [bookId]);
     return result;
   }
+
+  static async getClientCountrySummary(bookId) {
+    const queryString = `
+        SELECT dc."name" as country, count(client_id) AS count FROM log l
+            JOIN dim_country dc
+            ON l.country = dc.country_key
+            WHERE book_id = $1
+            group by dc."name"  
+        `;
+    let result = await cquery(bookDbPool, queryString, [bookId]);
+    return result;
+  }
 }
 
 export default BookRepository;
