@@ -57,4 +57,37 @@ route.get("/", async (req, res) => {
   res.send(users);
 });
 
+
+/**
+ * GET /api/users/{id}
+ * @summary Endpoint to get user by id
+ * @tags users
+ * @param {string} id.path.required - user id
+ * @return {User} 200 - success response - application/json
+ * @example response - 200 - success response example
+ * [
+ *   {
+ *     "id": "235b68e4-5b16-4a25-b731-45c7e67c351e",
+ *     "gender": "Cesc Fàbregas",
+ *     "age": "George McClean",
+ *     "createdat": "2021-06-14T17:49:07.000Z",
+ *     "updatedat": "2021-06-14T17:49:10.000Z",
+ *   }
+ * ]
+ */
+route.get("/:id", async (req, res) => {
+ 
+  //destructure route params
+    const { id } = req.params;
+    
+  winston.info(`Getting data for user with id - ${id}`); 
+  const user = await UserRepository.getUserById(id);
+  
+    if (!user.length) {
+        return res.status(404).send(`Book with id ${id} does not exist`);
+  }
+
+  res.send(user);
+});
+
 export default route;
