@@ -47,6 +47,26 @@ class UserRepository {
 
     return result;
   }
+
+  static async getUserById(userId) {
+    const queryString = `
+        SELECT id,
+                CASE
+			        WHEN usergender = 0 THEN 'Unknown'
+			        WHEN usergender = 1 THEN 'Male'
+			        WHEN usergender = 2 THEN 'Female'
+            END AS gender,
+                 age,
+                 createdat,
+                 updatedat
+                 from
+                 wr_user wu
+                 where id = $1
+        `;
+
+    let result = await cquery(bookDbPool, queryString, [userId]);
+    return result;
+  }
 }
 
 export default UserRepository;
