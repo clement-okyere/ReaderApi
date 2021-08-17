@@ -1,6 +1,6 @@
 import books from "../route/book";
 import category from "../route/category";
-import user from "../routes/user";
+import user from "../route/user";
 import express from "express";
 
 const routes = (app) => {
