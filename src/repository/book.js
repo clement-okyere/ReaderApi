@@ -24,6 +24,17 @@ class BookRepository {
     let result = await cquery(bookDbPool, queryString, [bookId]);
     return result;
   }
+
+  static async getUniqueUsers(bookId) {
+    const queryString = `
+         SELECT COUNT(distinct (user_id)) FROM log 
+            WHERE book_id =  $1
+            and user_id <> ''
+        `;
+
+    let result = await cquery(bookDbPool, queryString, [bookId]);
+    return result;
+  }
 }
 
 export default BookRepository;
