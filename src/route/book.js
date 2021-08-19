@@ -63,7 +63,7 @@ route.get("/", async (req, res) => {
 
 /**
  * GET /api/books/{id}/statistics
- * @summary Endpoint to get paginated list of books
+ * @summary Endpoint to get book statistics by id
  * @tags books
  * @param {string} id.path.required - book id
  * @return {BookStatistics} 200 - success response - application/json
