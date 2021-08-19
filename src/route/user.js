@@ -32,7 +32,7 @@ const route = Router();
  *     "gender": "male",
  *     "age": 20,
  *     "createdat": "2021-06-14T17:49:07.000Z",
- *     "updatedat": "2021-06-14T17:49:10.000Z",
+ *     "updatedat": "2021-06-14T17:49:10.000Z"
  *   }
  * ]
  */
@@ -74,7 +74,7 @@ route.get("/", async (req, res) => {
  *     "gender": "Cesc Fàbregas",
  *     "age": "George McClean",
  *     "createdat": "2021-06-14T17:49:07.000Z",
- *     "updatedat": "2021-06-14T17:49:10.000Z",
+ *     "updatedat": "2021-06-14T17:49:10.000Z"
  *   }
  * ]
  */
