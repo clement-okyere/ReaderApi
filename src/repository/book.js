@@ -14,6 +14,15 @@ class BookRepository {
     return result;
   }
 
+  static async getBookById(bookId) {
+    const queryString = `
+        SELECT uuid FROM book
+                 WHERE uuid = $1
+        `;
+    let result = await cquery(bookDbPool, queryString, [bookId]);
+    return result;
+  }
+
   static async getUniqueClients(bookId) {
     const queryString = `
          SELECT COUNT(distinct (client_id))
