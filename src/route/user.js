@@ -87,7 +87,7 @@ route.get("/:id", async (req, res) => {
   const user = await UserRepository.getUserById(id);
   
     if (!user.length) {
-        return res.status(404).send(`Book with id ${id} does not exist`);
+        return res.status(404).send(`User with id ${id} does not exist`);
   }
 
   res.send(user);
