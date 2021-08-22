@@ -40,5 +40,15 @@ describe("api/books", () => {
        expect(res.body).toHaveProperty("uniqueUsers");
        expect(res.body).toHaveProperty("clientCountrySummary");
      }, 300000);
-  });
+      
+    it("should return 404 book not found if book id does not exist", async () => {
+        const bookId = "54281c97-e81e-4694-bcb9-28d3ac0925a";
+        const res = await request(server)
+          .get(`/api/books/${bookId}/statistics`)
+          .timeout(300000);
+
+        expect(res.status).toBe(404);
+      }, 300000);
+      
+    });
 });
