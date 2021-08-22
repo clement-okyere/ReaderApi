@@ -67,6 +67,7 @@ route.get("/", async (req, res) => {
  * @tags books
  * @param {string} id.path.required - book id
  * @return {BookStatistics} 200 - success response - application/json
+ * @return {string} 404 - book not found response
  * @return {string} 500 - internal server error
  * @example response - 200 - success response example
  *   {
@@ -83,6 +84,16 @@ route.get("/:id/statistics", async (req, res) => {
 
   const bookId = req.params.id;
   winston.info(`Getting book statistic data for book with id - ${bookId}`);
+
+  //check if book exists
+   const book = await BookRepository.getBookById(bookId);
+
+  if (!book.length) {
+     winston.info(`Book with id ${bookId} does not exist`);
+     return res.status(404).send(`Book with id ${bookId} does not exist`);
+   }
+  
+
   let bookStatistics = {};
 
     
